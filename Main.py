@@ -1,4 +1,9 @@
 import streamlit as st
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Import your pages
 import home
@@ -7,19 +12,19 @@ import dashboard
 import history
 import Churn_prediction
 
-# Hard-coded credentials 
-USERNAME = 'user1'
-PASSWORD = 'password1'
-
 # Login function
-def login(username, password):
-    if username == USERNAME and password == PASSWORD:
+def login(username, password, env_username, env_password):
+    if username == env_username and password == env_password:
         return True
     return False
 
 # Main function to run the app
 def main():
     st.title("Telco Customer Churn Prediction App")
+
+    # Load credentials from environment variables
+    env_username = os.getenv('USER1')
+    env_password = os.getenv('PASSWORD1')
 
     # Create login form
     if 'logged_in' not in st.session_state:
@@ -32,7 +37,7 @@ def main():
         password = st.text_input("Password", type="password")
 
         if st.button("Login"):
-            if login(username, password):
+            if login(username, password, env_username, env_password):
                 st.session_state['logged_in'] = True
                 st.success("Login successful!")
             else:
@@ -42,7 +47,7 @@ def main():
         page = st.sidebar.selectbox("Go to", ["Home", "Data", "Dashboard", "History", "Churn Prediction"])
 
         if page == "Home":
-            home.run()  
+            home.run()  # Assuming each module has a run() function
         elif page == "Data":
             data.run()
         elif page == "Dashboard":
@@ -55,8 +60,10 @@ def main():
         # Logout button
         if st.sidebar.button("Logout"):
             st.session_state['logged_in'] = False
-            st.session_state.clear()  
+            st.session_state.clear()  # Optionally clear all session state
             st.success("Logged out successfully")
 
 if __name__ == "__main__":
     main()
+
+

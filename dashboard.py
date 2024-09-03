@@ -12,7 +12,7 @@ def run():
     df = pd.read_csv(file_path)
 
     # Create a sidebar for navigation
-    st.sidebar.title("Navigation")
+    st.sidebar.title("Navigate the pades")
     page = st.sidebar.radio("Go to", ["EDA Dashboard", "KPIs"])
 
     if page == "EDA Dashboard":
