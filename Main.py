@@ -1,5 +1,9 @@
 import streamlit as st
-import yaml
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Import your pages
 import home
@@ -8,15 +12,9 @@ import dashboard
 import history
 import Churn_prediction
 
-# Load user credentials from config.yaml
-def load_credentials():
-    with open('config.yaml') as file:
-        config = yaml.safe_load(file)
-    return config['credentials']
-
 # Login function
-def login(username, password, credentials):
-    if username in credentials and credentials[username] == password:
+def login(username, password, env_username, env_password):
+    if username == env_username and password == env_password:
         return True
     return False
 
@@ -24,8 +22,9 @@ def login(username, password, credentials):
 def main():
     st.title("Telco Customer Churn Prediction App")
 
-    # Load credentials
-    credentials = load_credentials()
+    # Load credentials from environment variables
+    env_username = os.getenv('USER1')
+    env_password = os.getenv('PASSWORD1')
 
     # Create login form
     if 'logged_in' not in st.session_state:
@@ -38,7 +37,7 @@ def main():
         password = st.text_input("Password", type="password")
 
         if st.button("Login"):
-            if login(username, password, credentials):
+            if login(username, password, env_username, env_password):
                 st.session_state['logged_in'] = True
                 st.success("Login successful!")
             else:
