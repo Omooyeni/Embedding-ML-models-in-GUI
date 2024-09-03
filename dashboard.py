@@ -8,7 +8,7 @@ def run():
     st.write("Welcome to the Dashboard page!")
 
     # Load dataset
-    file_path = r'Data/dataset.csv'
+    file_path = r'C:\Users\USER\Desktop\Web App Streanlit\Embedding-ML-models-in-GUI\Data\dataset.csv'
     df = pd.read_csv(file_path)
 
     # Create a sidebar for navigation
