@@ -3,7 +3,7 @@ import pandas as pd
 
 def run():
     st.title("Data Page")
-    st.write("This is the Data Page where you can explore, view, and download your data.")
+    st.write("This is the Data Page where you can explore, view, and download the data used to train the models.")
 
     # Load the dataset from the csv file
     @st.cache_data
