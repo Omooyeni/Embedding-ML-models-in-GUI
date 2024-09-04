@@ -9,7 +9,6 @@ import joblib
 import imblearn
 import os
 
-
 def show_Churn_prediction():
     st.title("Churn Prediction Page")
     st.write("Welcome to the Churn Prediction page!")
@@ -205,5 +204,5 @@ def run():
         return True
         
     if __name__ == '__main__':
-        input_features()
-        prediction = st
+        run()
+
