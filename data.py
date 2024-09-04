@@ -8,7 +8,7 @@ def run():
     # Load the dataset from the csv file
     @st.cache_data
     def load_data():
-        df = pd.read_csv(r"C:\Users\USER\Desktop\customer churn web app\Customer-Churn-Web-App\Data\dataset.csv")
+        df = pd.read_csv("https://raw.githubusercontent.com/Omooyeni/Embedding-ML-models-in-GUI/main/Data/dataset.csv")
         return df
 
     df = load_data()
